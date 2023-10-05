@@ -1,19 +1,26 @@
 {
-  "name": "backend",
+  "name": "phonebook",
   "version": "1.0.0",
-  "description": "",
+  "description": "Node.js and express",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nicktvdd/FullStackOpen.git"
+    "url": "git+https://github.com/Nicktvdd/Full-stack-open-part-3.git"
   },
   "author": "Nick van den Dungen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Nicktvdd/FullStackOpen/issues"
+    "url": "https://github.com/Nicktvdd/Full-stack-open-part-3/issues"
   },
-  "homepage": "https://github.com/Nicktvdd/FullStackOpen#readme"
+  "homepage": "https://github.com/Nicktvdd/Full-stack-open-part-3#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1"
+  }
 }
