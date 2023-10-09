@@ -12,7 +12,6 @@ This repository contains the solutions and exercises for Part 1 of the Full Stac
 - [Installation](#installation)
 - [Usage](#usage)
 - [Exercises](#exercises)
-- [License](#license)
 
 ## Course Information
 
@@ -47,7 +46,29 @@ To run the exercises and solutions provided in this repository, you will need No
 ``bash
 npm run dev``
 
+## Exercises
+This repository contains exercises related to the following topics:
 
+### Courseinfo
+**Description:** A React application that showcases course information, including the course name and a list of its parts. It demonstrates how to pass data between components and structure a React application.
 
+**Key Concepts:**
+- Component composition
+- Props and data flow
+- Organizing React code
 
+### Unicafe
+**Description:** A React application that showcases course information, including the course name and a list of its parts. It demonstrates how to pass data between components and structure a React application.
 
+**Key Concepts:**
+- Component composition
+- Props and data flow
+- Organizing React code
+
+### Anecdotes
+**Description:** A phonebook application built with React, allowing users to add, delete, and filter contacts. It introduces handling forms in React and managing component state.
+
+**Key Concepts:**
+- Form handling in React
+- Managing component state
+- Conditional rendering
