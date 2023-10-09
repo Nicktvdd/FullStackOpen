@@ -1,5 +1,5 @@
 # Single page app sequence diagram
-In this diagram is depicted a situation where the user cgoes to the single-page app version of the notes app at https://studies.cs.helsinki.fi/exampleapp/spa.
+In this diagram is depicted a situation where the user goes to the single-page app version of the notes app at https://studies.cs.helsinki.fi/exampleapp/spa.
 
 ```mermaid
 sequenceDiagram
