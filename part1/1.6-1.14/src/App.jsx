@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Display = props => <div>{props.text} {props.value}</div>
+const Display = props => <div>{props.text} {props.value} {props.percent}</div>
 
 
 const Button = (props) => (
@@ -39,7 +39,7 @@ const App = () => {
       <Display text="bad" value={bad} />
       <Display text="all" value={bad+good+neutral} />
       <Display text="average" value={(good-bad) / (bad+good+neutral)} />
-      <Display text="positive" value={(good-bad) / (bad+good+neutral)} />
+      <Display text="positive" value={(good / (bad+good+neutral)) * 100} percent='%'/>
 
     </div>
   )
