@@ -44,7 +44,7 @@ To run the exercises and solutions provided in this repository, you will need No
     ```
 
 ## Usage
-Run the program
+Run the program:
     ```bash
     npm run dev
     ```
