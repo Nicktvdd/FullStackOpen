@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const StatisticLine = (props) => {
   return(
-  <div>{props.text} {props.value} {props.percent}</div> 
+  <tr><td>{props.text}</td> <td>{props.value}</td> {props.percent}</tr> 
   )
 }
 
@@ -40,13 +40,13 @@ const App = () => {
       <Button handleClick={() => setBad(bad + 1)} text="bad" />
       <h1> statistics </h1>
       {totalFeedback > 0 ? (
-        <div>
+        <table>
         <Statistics 
         good={good}
         neutral={neutral}
         bad={bad}
         totalFeedback={totalFeedback} />
-        </div> )
+        </table> )
       : (<p>No feedback given yet</p>)
 }
     </div>
