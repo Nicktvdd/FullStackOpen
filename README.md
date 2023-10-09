@@ -44,9 +44,9 @@ To run the exercises and solutions provided in this repository, you will need No
     ```
 
 ## Usage
-    ```bash
+    bash
     npm run dev
-    ```
+    
 
 ## Exercises
 This repository contains exercises related to the following topics:
