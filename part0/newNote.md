@@ -1,4 +1,4 @@
-# Sequence diagram
+# New note sequence diagram
 In this diagram is depicted a situation where the user creates a new note on the page https://studies.cs.helsinki.fi/exampleapp/notes by writing something in the field and clicking the save button.
 
 ```mermaid
