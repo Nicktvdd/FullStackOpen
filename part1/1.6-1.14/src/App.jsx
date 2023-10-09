@@ -38,6 +38,9 @@ const App = () => {
       <Display text="neutral" value={neutral} />
       <Display text="bad" value={bad} />
       <Display text="all" value={bad+good+neutral} />
+      <Display text="average" value={(good-bad) / (bad+good+neutral)} />
+      <Display text="positive" value={(good-bad) / (bad+good+neutral)} />
+
     </div>
   )
 }
