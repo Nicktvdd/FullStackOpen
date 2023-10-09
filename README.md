@@ -37,14 +37,14 @@ To run the exercises and solutions provided in this repository, you will need No
     git clone https://github.com/Nicktvdd/FullStackOpen.git
     cd FullStackOpen/part1/[exercise]
     ```
-    Replace [exercise] with the exercise name.
+   * Replace [exercise] with the exercise name.*
 2. Install the required dependencies:
     ```bash
     npm install
     ```
 
 ## Usage
-Run the program:
+    Run the program:
     ```
     npm run dev
     ```
