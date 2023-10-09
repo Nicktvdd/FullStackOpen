@@ -34,17 +34,17 @@ To run the exercises and solutions provided in this repository, you will need No
 
 1. Clone this repository to your local machine:
 
-   ``bash
+   ```bash
    git clone https://github.com/Nicktvdd/FullStackOpen.git
-   cd FullStackOpen/part1/[exercise]``
+   cd FullStackOpen/part1/[exercise]```
    Replace [exercise] with the exercise name.
 2. Install the required dependencies:
-    ``bash
-   npm install``
+    ```bash
+   npm install```
 
 ## Usage
-``bash
-npm run dev``
+```bash
+npm run dev```
 
 ## Exercises
 This repository contains exercises related to the following topics:
