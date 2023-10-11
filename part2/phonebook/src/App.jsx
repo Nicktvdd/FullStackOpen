@@ -1,9 +1,8 @@
 import { Component, useState } from 'react'
 import React from 'react'
 import Filter from './components/filter'
-import Person from './components/person'
 import PersonForm from './components/personform'
-
+import FilteredPersons from './components/filteredpersons'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -55,17 +54,15 @@ const App = () => {
       <h2>Phonebook</h2>
       <Filter filter={filter} handleFilter={handleFilter} />
       <h3>Add a new contact</h3>
-      <PersonForm addPerson={addPerson} newName={newName} 
-      handleNameChange={handleNameChange} newNumber={newNumber} 
-      handleNumberChange={handleNumberChange} />
+      <PersonForm addPerson={addPerson} newName={newName}
+        handleNameChange={handleNameChange} newNumber={newNumber}
+        handleNumberChange={handleNumberChange} />
       <h3>Numbers</h3>
-      <div>
-        {filteredPersons.map(person =>
-          <Person key={person.name} person={person} />
-        )}
-      </div>
+      <FilteredPersons filteredPersons={filteredPersons} />
     </div>
   )
 }
 
 export default App
+
+
