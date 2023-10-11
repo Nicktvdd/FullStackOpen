@@ -3,9 +3,9 @@ import React from 'react'
 
 const Name = ({ name }) => {
   return (
-   <li>{name}</li>
+    <li>{name}</li>
   )
- }
+}
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -15,16 +15,26 @@ const App = () => {
 
   const addName = (event) => {
     event.preventDefault()
-    const nameObject = {
-      name: newName,
+    if (compareName(newName)) {
+      alert(`${newName} is already in the phonebook`)
     }
-    setPersons(persons.concat(nameObject))
-    setNewName('')
+    else {
+      const nameObject = {
+        name: newName,
+      }
+      setPersons(persons.concat(nameObject))
+      setNewName('')
+    }
+  }
+
+  const compareName = (name) => {
+    return persons.some((person) => person.name === name)
   }
 
   const handleNameChange = (event) => {
     console.log(event.target.value)
-    setNewName(event.target.value)
+    if (compareName)
+      setNewName(event.target.value)
   }
   return (
     <div>
@@ -32,7 +42,7 @@ const App = () => {
       <form onSubmit={addName}>
         name: <input value={newName}
           onChange={handleNameChange}
-          />
+        />
         <div>
           <button type="submit">add</button>
         </div>
