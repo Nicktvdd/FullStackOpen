@@ -8,6 +8,7 @@ const App = () => {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
+  const [errorMessage, setErrorMessage] = useState('some error happened...')
 
   useEffect(() => {
     noteService
@@ -38,6 +39,17 @@ const App = () => {
     setNewNote(event.target.value)
   }
 
+const Notification = ({ message }) => {
+    if (message ===null) {
+        return null
+    }
+    return (
+        <div className='error'>
+            {message}
+        </div>
+    )
+}
+
   const toggleImportanceOf = id => {
     const url = `http://localhost:3001/notes/${id}`
     const note = notes.find(n => n.id === id)
@@ -63,6 +75,7 @@ const App = () => {
   return (
     <div>
       <h1>Notes</h1>
+      <Notification message={errorMessage} />
       <div>
         <button onClick={() => setShowAll(!showAll)}>
           show {showAll ? 'important' : 'all'}
@@ -80,8 +93,7 @@ const App = () => {
       <form onSubmit={addNote}>
         <input value={newNote}
           onChange={handleNoteChange}
-        />
-        <button type="submit">save</button>
+        /> <button type="submit">save</button>
       </form>
     </div>
   )
