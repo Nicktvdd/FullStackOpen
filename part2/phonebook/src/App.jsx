@@ -5,11 +5,22 @@ import PersonForm from './components/personform'
 import FilteredPersons from './components/filteredpersons'
 import personService from './services/persons'
 
+/* error {
+    color: 'red',
+    background: lightgrey,
+    fontSize: 20,
+    borderStyle: 'solid',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10
+  } */
+
 const App = () => {
 	const [persons, setPersons] = useState([])
 	const [newName, setNewName] = useState('')
 	const [newNumber, setNewNumber] = useState('')
 	const [filter, setFilter] = useState('')
+    const [addedMessage, setAddedessage] = useState(null)
 
 	useEffect(() => {
 		console.log('effect')
@@ -54,9 +65,35 @@ const App = () => {
 					setPersons(persons.concat(returnedPerson))
 					setNewName('')
 					setNewNumber('')
+                    setAddedMessage(
+                        `Added ${personObject.name} `
+                      )
+                    setTimeout(() => {
+                        setAddedMessage(null)
+                      }, 5000)
 				})
 		}
 	}
+    
+    const Notification = ({ message }) => {
+        if (message ===null) {
+            return null
+        }
+        const addedStyle = {
+            color: 'green',
+            background: 'lightgrey',
+            fontSize: 20,
+            borderStyle: 'solid',
+            borderRadius: 5,
+            padding: 10,
+            marginBottom: 10
+          }
+        return (
+            <div style={addedStyle}>
+                {message}
+            </div>
+        )
+    }
 
 	const handleNameChange = (event) => {
 		setNewName(event.target.value)
@@ -86,6 +123,7 @@ const App = () => {
 	return (
 		<div>
 			<h2>Phonebook</h2>
+            <Notification message={addedMessage} />
 			<Filter filter={filter} handleFilter={handleFilter} />
 			<h3>Add a new contact</h3>
 			<PersonForm addPerson={addPerson} newName={newName}
