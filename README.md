@@ -38,7 +38,6 @@ To run the exercises and solutions provided in this repository, you will need **
   - Install the required dependencies when you're in the exercise folder:
     ```bash
     npm install
-    ```
 
 ## Resources
 For additional guidance and support, refer to the official Full Stack Open course website: [Full Stack Open](https://fullstackopen.com/)
@@ -93,7 +92,6 @@ This repository contains the solutions and exercises for Part 1 of the Full Stac
 Run the program:
     ```bash
     npm run dev
-    ```
     
 ## Exercises
 This repository contains exercises related to the following topics:
@@ -140,7 +138,6 @@ Run the program:
     ```bash
     npm run server
     npm run dev
-    ```
   open the suggested port
 
 ## Exercises part2
