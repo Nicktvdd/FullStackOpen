@@ -89,6 +89,10 @@ This repository contains the solutions and exercises for Part 1 of the Full Stac
 - NPM
 
 ## Usage
+Navigate to the exercise folder
+  ```bash
+  cd [exercisefolder]
+  ```
 Run the program:
   ```bash
   npm run dev
@@ -135,6 +139,10 @@ This repository contains the solutions and exercises for Part 2 of the Full Stac
 - NPM
 
 ## Usage part2
+Navigate to the exercise folder
+  ```bash
+  cd [exercisefolder]
+  ```
 Run the program:
   ```bash
   npm run server
