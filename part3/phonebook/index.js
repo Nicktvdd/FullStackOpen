@@ -2,7 +2,9 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const cors = require('cors')
 
+app.use(cors())
 app.use(express.json())
 app.use(bodyParser.json());
 app.use(morgan((tokens, req, res) => {
@@ -72,14 +74,7 @@ app.get('/info', (req, res) => {
 })
 
 app.get('/api/persons', (req, res) => {
-  res.setHeader('Content-Type', 'text/plain');
-
-  res.write('[\n')
-  for (const person of persons) {
-    res.write(`  - {\n\tid: ${person.id},\n\tname: "${person.name}",\n\tnumber: "${person.number}"\n    },\n`);
-  }
-  res.write('\n]')
-  res.end()
+    res.json(persons)
 })
 
 app.get('/api/persons/:id', (req, res) => {
