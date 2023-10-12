@@ -4,6 +4,12 @@
 ## Introduction
 **Full Stack Open** is a comprehensive online course offered by the University of Helsinki, designed to teach modern web development from the ground up. It covers a wide range of topics, from the basics of web architecture to building full-stack web applications using cutting-edge technologies.
 
+## Course Information
+- **Course Name:** Full Stack Open
+- **University:** University of Helsinki
+- **Website:** [Full Stack Open](https://fullstackopen.com/)
+  
+## Topics covered
 Throughout this course I will gain a deeper understanding of:
 - JavaScript
 - React
@@ -14,30 +20,47 @@ Throughout this course I will gain a deeper understanding of:
 - Deployment and Hosting
 - And much more
 
-## Course Information
-- **Course Name:** Full Stack Open
-- **Part:** Part 1 - Introduction to React
-- **University:** University of Helsinki
-- **Website:** [Full Stack Open](https://fullstackopen.com/)
+## How to use this repository
+To begin your exploration of my submissions for Full Stack Open, follow these steps:
+
+1. Clone this repository to your local machine:
+   ```bash
+   git clone https://github.com/Nicktvdd/FullStackOpen.git
+   cd FullStackOpen/part[part]/[exercise]
+   ```
+  * Replace [part] with the part number & [exercise] with the exercise name. *
+2. Explore the individual exercises and topics by navigating to the respective folders.
+3. Run the [Installation](#installation) (except for part0). Make sure you have node and npm installed first.
+4. Run the commands based on the part you are in.
+
+## Installation
+To run the exercises and solutions provided in this repository, you will need **Node.js, NPM and Git** installed on your computer.
+  - Install the required dependencies when you're in the exercise folder:
+    ```bash
+    npm install
+    ```
+
+## Resources
+For additional guidance and support, refer to the official Full Stack Open course website: [Full Stack Open](https://fullstackopen.com/)
 
 ## Table of Contents
 - [Introduction](#introduction)
   - [Course Information](#course-information)
+  - [Topics Covered](#topics-covered)
+  - [How to Use This Repository](#how-to-use-this-repository)
+  - [Resources](#resources)
+
 - [Part0](#part-0---fundamentals-of-web-apps)
     - [What I have learned](#what-i-have-learned)
-    - [Getting Started](#getting-started)
-    - [Topics Covered](#topics-covered)
-    - [How to Use This Repository](#how-to-use-this-repository)
-    - [Resources](#resources)
 
 - [Part 1 - React](#part-1---react)
   - [Technologies](#technologies)
-  - [Installation](#installation)
   - [Usage](#usage)
   - [Exercises](#exercises)
 
 - [Part 2 - Communicating with Servers](#part-2---communicating-with-servers)
   - [Technologies](#technologies-part2)
+  - [Usage](#usage-part2)
   - [Exercises](#exersises-part2)
 
 # Part 0 - Fundamentals of web apps
@@ -56,19 +79,6 @@ In Part 0, I gained a deep understanding of foundational web development concept
 - Using GitHub for collaboration
 - Building diagrams with Mermaid
 
-## Getting Started
-
-To begin your journey with Part 0 of Full Stack Open, follow these steps:
-
-1. Clone this repository to your local machine:
-   ```bash
-   git clone https://github.com/Nicktvdd/FullStackOpen.git
-   cd FullStackOpen/part0
-2. Explore the individual exercises and topics by navigating to the respective folders.
-
-## Resources
-For additional guidance and support, refer to the official Full Stack Open course website: [Full Stack Open](https://fullstackopen.com/)
-
 # Part 1 - React
 This repository contains the solutions and exercises for Part 1 of the Full Stack Open course offered by the University of Helsinki. Part 1 focuses on the fundamentals of web development with JavaScript and React.
 
@@ -78,20 +88,6 @@ This repository contains the solutions and exercises for Part 1 of the Full Stac
 - Git
 - HTML
 - NPM
-
-## Installation
-To run the exercises and solutions provided in this repository, you will need Node.js, NPM and Git installed on your computer.
-
-1. Clone this repository to your local machine:
-    ```bash 
-    git clone https://github.com/Nicktvdd/FullStackOpen.git
-    cd FullStackOpen/part1/[exercise]
-    ```
-   * Replace [exercise] with the exercise name.*
-2. Install the required dependencies:
-    ```bash
-    npm install
-    ```
 
 ## Usage
 Run the program:
@@ -138,6 +134,14 @@ This repository contains the solutions and exercises for Part 2 of the Full Stac
 - HTML
 - CSS
 - NPM
+
+## Usage part2
+Run the program:
+    ```bash
+    npm run server
+    npm run dev
+    ```
+  open the suggested port
 
 ## Exercises part2
 This repository contains exercises related to the following topics:
