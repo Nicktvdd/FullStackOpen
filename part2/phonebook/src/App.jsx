@@ -5,16 +5,6 @@ import PersonForm from './components/personform'
 import FilteredPersons from './components/filteredpersons'
 import personService from './services/persons'
 
-/* error {
-    color: 'red',
-    background: lightgrey,
-    fontSize: 20,
-    borderStyle: 'solid',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10
-  } */
-
 const App = () => {
     const [persons, setPersons] = useState([])
     const [newName, setNewName] = useState('')
