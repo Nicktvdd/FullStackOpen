@@ -58,13 +58,15 @@ const App = () => {
     setFilter(event.target.value)
   }
 
-  const handleDeletePerson = (id) => {
+  const handleDeletePerson = (id, name) => {
+    if (window.confirm(`are you sure you want to delete ${name} from the phonebook?`)) {
     personService
     .remove(id)
       .then((data) => {
         console.log(`Person with id ${id} removed successfully`);
       setPersons(persons.filter(person => person.id !== id))
       })
+    }
   }
 
   const filteredPersons = persons.filter((person) => person.name.toLowerCase().includes(filter.toLowerCase()))
