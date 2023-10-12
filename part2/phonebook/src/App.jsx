@@ -1,9 +1,9 @@
 import { Component, useState, useEffect } from 'react'
 import React from 'react'
-import axios from 'axios'
 import Filter from './components/filter'
 import PersonForm from './components/personform'
 import FilteredPersons from './components/filteredpersons'
+import Remove from './components/filteredpersons'
 import personService from './services/persons'
 
 
@@ -61,7 +61,7 @@ const App = () => {
   }
 
   const filteredPersons = persons.filter((person) => person.name.toLowerCase().includes(filter.toLowerCase()))
-
+  
   return (
     <div>
       <h2>Phonebook</h2>
