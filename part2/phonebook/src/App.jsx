@@ -3,7 +3,6 @@ import React from 'react'
 import Filter from './components/filter'
 import PersonForm from './components/personform'
 import FilteredPersons from './components/filteredpersons'
-import Remove from './components/filteredpersons'
 import personService from './services/persons'
 
 
@@ -60,8 +59,16 @@ const App = () => {
     setFilter(event.target.value)
   }
 
+  const handleDeletePerson = (id) => {
+    personService
+    .remove(id)
+      .then((data) => {
+        console.log(`Person with id ${id} removed successfully`);
+      })
+  }
+
   const filteredPersons = persons.filter((person) => person.name.toLowerCase().includes(filter.toLowerCase()))
-  
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -71,7 +78,7 @@ const App = () => {
         handleNameChange={handleNameChange} newNumber={newNumber}
         handleNumberChange={handleNumberChange} />
       <h3>Numbers</h3>
-      <FilteredPersons filteredPersons={filteredPersons} />
+      <FilteredPersons filteredPersons={filteredPersons} handleDeletePerson={handleDeletePerson} />
     </div>
   )
 }
