@@ -35,10 +35,10 @@ Throughout this course I will gain a deeper understanding of:
   - [Installation](#installation)
   - [Usage](#usage)
   - [Exercises](#exercises)
-  - 
+
 - [Part 2 - Communicating with Servers](#part-2---communicating-with-servers)
-  - [Technologies](#technologies-2)
-  - [Exercises](#exersises-2)
+  - [Technologies](#technologies-part2)
+  - [Exercises](#exersises-part2)
 
 # Part 0 - Fundamentals of web apps
 ## What I have learned
@@ -129,7 +129,7 @@ This repository contains exercises related to the following topics:
 # Part 2 - Communicating with Servers
 This repository contains the solutions and exercises for Part 2 of the Full Stack Open course offered by the University of Helsinki. Part 2 focuses on communicating with a server, implementing user authentication, and handling asynchronous operations in web development.
 
-## Technologies 2
+## Technologies part2
 - JavaScript
 - React
 - Express
@@ -139,7 +139,7 @@ This repository contains the solutions and exercises for Part 2 of the Full Stac
 - CSS
 - NPM
 
-## Exercises 2
+## Exercises part2
 This repository contains exercises related to the following topics:
 
 ### Courseinfo
