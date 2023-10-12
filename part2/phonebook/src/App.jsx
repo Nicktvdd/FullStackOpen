@@ -5,7 +5,6 @@ import PersonForm from './components/personform'
 import FilteredPersons from './components/filteredpersons'
 import personService from './services/persons'
 
-
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
@@ -64,6 +63,7 @@ const App = () => {
     .remove(id)
       .then((data) => {
         console.log(`Person with id ${id} removed successfully`);
+      setPersons(persons.filter(person => person.id !== id))
       })
   }
 
