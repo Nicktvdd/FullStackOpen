@@ -1,5 +1,6 @@
 # FullStackOpen (Under construction)
-*Part 0 and 1 are finished, part 2 and 3 are under construction.*
+*Part 0, 1 and 2 are finished, 3 is under construction.*
+
 ## Introduction
 **Full Stack Open** is a comprehensive online course offered by the University of Helsinki, designed to teach modern web development from the ground up. It covers a wide range of topics, from the basics of web architecture to building full-stack web applications using cutting-edge technologies.
 
@@ -34,6 +35,10 @@ Throughout this course I will gain a deeper understanding of:
   - [Installation](#installation)
   - [Usage](#usage)
   - [Exercises](#exercises)
+  - 
+- [Part 2 - Communicating with Servers](#part-2---communicating-with-servers)
+  - [Technologies](#technologies-2)
+  - [Exercises](#exersises-2)
 
 # Part 0 - Fundamentals of web apps
 ## What I have learned
@@ -94,7 +99,6 @@ Run the program:
     npm run dev
     ```
     
-
 ## Exercises
 This repository contains exercises related to the following topics:
 
@@ -121,3 +125,43 @@ This repository contains exercises related to the following topics:
 - Form handling in React
 - Managing component state
 - Conditional rendering
+
+# Part 2 - Communicating with Servers
+This repository contains the solutions and exercises for Part 2 of the Full Stack Open course offered by the University of Helsinki. Part 2 focuses on communicating with a server, implementing user authentication, and handling asynchronous operations in web development.
+
+## Technologies 2
+- JavaScript
+- React
+- Express
+- Json-Server
+- Git
+- HTML
+- CSS
+- NPM
+
+## Exercises 2
+This repository contains exercises related to the following topics:
+
+### Courseinfo
+**Description:** A React application that showcases course information, including the course name and a list of its parts. It demonstrates how to fetch and display data from a server using RESTful APIs.
+
+**Key Concepts:**
+- Fetching data from a server
+- Displaying server data in a React application
+
+### Phonebook
+**Description:** A phonebook application built with React that allows users to add, delete, and filter contacts. It introduces handling forms, managing component state, and communicating with a server to store and retrieve data.
+
+**Key Concepts:**
+- Form handling in React
+- Managing component state
+- Communicating with a server for data storage
+
+### Notes
+**Description:** A note-taking application that showcases full-stack development. Users can create, modify, and delete notes, which are stored on a server. It introduces user authentication and full-stack development concepts.
+
+**Key Concepts:**
+- Input authentication
+- Full-stack development
+- Storing data on a server
+
