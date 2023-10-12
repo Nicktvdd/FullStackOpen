@@ -90,8 +90,9 @@ This repository contains the solutions and exercises for Part 1 of the Full Stac
 
 ## Usage
 Run the program:
-    ```bash
-    npm run dev
+  ```bash
+  npm run dev
+  ```
     
 ## Exercises
 This repository contains exercises related to the following topics:
@@ -135,9 +136,10 @@ This repository contains the solutions and exercises for Part 2 of the Full Stac
 
 ## Usage part2
 Run the program:
-    ```bash
-    npm run server
-    npm run dev
+  ```bash
+  npm run server
+  npm run dev
+  ```
   open the suggested port
 
 ## Exercises part2
