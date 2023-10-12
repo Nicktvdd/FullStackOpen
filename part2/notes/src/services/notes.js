@@ -1,5 +1,7 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/notes'
+// const baseUrl = 'http://localhost:3001/notes' for use with json-server
+const baseUrl = 'http://localhost:3001/api/notes' //use with our node.js backend
+
 
 const getAll = () => {
     const request = axios.get(baseUrl)
