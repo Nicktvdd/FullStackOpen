@@ -5,9 +5,9 @@ const Person = require('./models/person')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
-const Person = require('./models/person')
 
 //---------------------------------use---------------------------------------------
+
 app.use(express.static('dist'))
 app.use(cors())
 app.use(express.json())
@@ -24,6 +24,7 @@ app.use(morgan((tokens, req, res) => {
 }))
 
 //---------------------------------data--------------------------------------------
+
 let persons =
     [
         {
@@ -86,13 +87,18 @@ app.get('/api/persons', (request, response) => {
 
 app.get('/api/persons/:id', (req, res) => {
     res.setHeader('Content-Type', 'text/plain');
-    const id = Number(req.params.id)
+    Person.findById(request.params.id).then(note => {
+        express.response.json(person)
+    })
+/*     const id = Number(req.params.id)
     if (!id || id >= generateId())
         res.status(404).end()
     const person = persons.find(person => person.id === id)
 
-    res.send(`name: ${person.name}\nnumber: ${person.number}\n`);
+    res.send(`name: ${person.name}\nnumber: ${person.number}\n`); */
 })
+
+//--------------------------------delete-------------------------------------------
 
 app.delete('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
