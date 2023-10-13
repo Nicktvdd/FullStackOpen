@@ -125,7 +125,7 @@ app.post('/api/persons', (request, response) => {
     persons = persons.concat(person)
 
     person.save().then(newPerson => {
-        response.json(person)
+        response.json(newPerson)
     })
 })
 
