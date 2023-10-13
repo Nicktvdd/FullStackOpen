@@ -18,7 +18,22 @@ app.use(morgan((tokens, req, res) => {
     JSON.stringify(req.body)
   ].join(' ')
 }))
+//---------------------------------mongoose----------------------------------------
+const mongoose = require('mongoose')
 
+// DO NOT SAVE YOUR PASSWORD TO GITHUB!!
+const url =
+  `mongodb+srv://nicktvdd:<password>@cluster0.crtbvnu.mongodb.net/phonebook?retryWrites=true&w=majority`
+
+mongoose.set('strictQuery',false)
+mongoose.connect(url)
+
+const personSchema = new mongoose.Schema({
+  name: String,
+  number: String,
+})
+
+const Person = mongoose.model('Person', personSchema)
 //---------------------------------data--------------------------------------------
 let persons =
   [
@@ -74,8 +89,10 @@ app.get('/info', (req, res) => {
   res.send(`Phonebook has info for ${generateId()}<br/>${new Date()}`)
 })
 
-app.get('/api/persons', (req, res) => {
-    res.json(persons)
+app.get('/api/persons', (request, response) => {
+  Person.find({}).then(persons => {
+    response.json(persons)
+  })
 })
 
 app.get('/api/persons/:id', (req, res) => {
