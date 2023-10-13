@@ -3,6 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
+const Person = require('./models/person')
 
 app.use(express.static('dist'))
 app.use(cors())
@@ -18,22 +19,7 @@ app.use(morgan((tokens, req, res) => {
     JSON.stringify(req.body)
   ].join(' ')
 }))
-//---------------------------------mongoose----------------------------------------
-const mongoose = require('mongoose')
 
-// DO NOT SAVE YOUR PASSWORD TO GITHUB!!
-const url =
-  `mongodb+srv://nicktvdd:<password>@cluster0.crtbvnu.mongodb.net/phonebook?retryWrites=true&w=majority`
-
-mongoose.set('strictQuery',false)
-mongoose.connect(url)
-
-const personSchema = new mongoose.Schema({
-  name: String,
-  number: String,
-})
-
-const Person = mongoose.model('Person', personSchema)
 //---------------------------------data--------------------------------------------
 let persons =
   [
