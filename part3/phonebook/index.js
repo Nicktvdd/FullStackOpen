@@ -7,6 +7,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const Person = require('./models/person')
 
+//---------------------------------use---------------------------------------------
 app.use(express.static('dist'))
 app.use(cors())
 app.use(express.json())
@@ -127,7 +128,7 @@ app.post('/api/persons', (request, response) => {
 })
 
 //------------------------------listen-----------------------------------------------
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
