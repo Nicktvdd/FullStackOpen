@@ -1,7 +1,7 @@
 # FullStackOpen (Under construction)
 *Part 0, 1 and 2 are finished, 3 is under construction.*
 
-Check out the phonebook [here](https://phonebook-nsae.onrender.com). It's hosted on Render, and still a work in progress.
+Check out the phonebook [here](https://phonebook-nsae.onrender.com). It's created with React, Node, Express, Axios, Vite and hosted on Render, and still a work in progress.
 
 ## Introduction
 **Full Stack Open** is a comprehensive online course offered by the University of Helsinki, designed to teach modern web development from the ground up. It covers a wide range of topics, from the basics of web architecture to building full-stack web applications using cutting-edge technologies.
