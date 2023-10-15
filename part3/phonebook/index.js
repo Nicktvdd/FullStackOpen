@@ -24,49 +24,8 @@ app.use(morgan((tokens, req, res) => {
 }))
 
 //---------------------------------data--------------------------------------------
+//replaced by MongoDB
 
-let persons =
-    [
-        {
-            "id": 1,
-            "name": "Arto Hellas",
-            "number": "040-123456"
-        },
-        {
-            "id": 2,
-            "name": "Ada Lovelace",
-            "number": "39-44-5323523"
-        },
-        {
-            "id": 3,
-            "name": "Dan Abramov",
-            "number": "12-43-234345"
-        },
-        {
-            "id": 4,
-            "name": "Mary Poppendieck",
-            "number": "39-23-6423122"
-        }
-    ]
-
-const generateId = () => {
-    const maxId = persons.length > 0
-        ? Math.max(...persons.map(n => n.id))
-        : 0
-    return maxId
-}
-
-const generateRandomId = () => {
-    if (persons.length === 0)
-        return 1;
-    const existingIds = persons.map(person => person.id)
-    let randomId;
-    do {
-        randomId = Math.floor(Math.random() * 100)
-    } while (existingIds.includes(randomId))
-
-    return randomId
-}
 //--------------------------------get---------------------------------------------
 
 app.get('/', (req, res) => {
@@ -117,18 +76,12 @@ app.post('/api/persons', (request, response) => {
             error: 'Phonebook data insertion failed, data seems to be missing. If you have forgotten your name, please seek medical help'
         })
     }
-    if (persons.some(person => person.name === body.name)) {
-        return response.status(400).json({
-            error: `There's room for only one ${body.name} in this phonebook, change your name and try again`
-        })
-    }
 
-    const person = {
-        id: generateRandomId(),
+    const person = new Person({
         name: body.name,
         number: body.number
-    }
-    persons = persons.concat(person)
+    })
+    //persons = persons.concat(person)
 
     person.save().then(newPerson => {
         response.json(newPerson)
