@@ -23,9 +23,6 @@ app.use(morgan((tokens, req, res) => {
     ].join(' ')
 }))
 
-//---------------------------------data--------------------------------------------
-//replaced by MongoDB
-
 //--------------------------------get---------------------------------------------
 
 app.get('/', (req, res) => {
@@ -33,8 +30,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/info', (req, res) => {
-    res.setHeader('Content-Type', 'text/plain');
-    const maxId = persons.length > 0
+    const maxId = Person.length > 0
     res.send(`Phonebook has info for ${generateId()}<br/>${new Date()}`)
 })
 
@@ -45,23 +41,16 @@ app.get('/api/persons', (request, response) => {
 })
 
 app.get('/api/persons/:id', (req, res) => {
-    res.setHeader('Content-Type', 'text/plain');
-    Person.findById(request.params.id).then(note => {
+    Person.findById(request.params.id).then(person => {
         express.response.json(person)
     })
-    /*     const id = Number(req.params.id)
-        if (!id || id >= generateId())
-            res.status(404).end()
-        const person = persons.find(person => person.id === id)
-    
-        res.send(`name: ${person.name}\nnumber: ${person.number}\n`); */
 })
 
 //--------------------------------delete-------------------------------------------
 
 app.delete('/api/persons/:id', (request, response) => {
     const id = request.params.id
-    
+
     Person.findByIdAndDelete(id)
         .then(() => {
             response.status(204).end()
@@ -82,13 +71,10 @@ app.post('/api/persons', (request, response) => {
             error: 'Phonebook data insertion failed, data seems to be missing. If you have forgotten your name, please seek medical help'
         })
     }
-
     const person = new Person({
         name: body.name,
         number: body.number
     })
-    //persons = persons.concat(person)
-
     person.save().then(newPerson => {
         response.json(newPerson)
     })
