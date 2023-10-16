@@ -49,21 +49,27 @@ app.get('/api/persons/:id', (req, res) => {
     Person.findById(request.params.id).then(note => {
         express.response.json(person)
     })
-/*     const id = Number(req.params.id)
-    if (!id || id >= generateId())
-        res.status(404).end()
-    const person = persons.find(person => person.id === id)
-
-    res.send(`name: ${person.name}\nnumber: ${person.number}\n`); */
+    /*     const id = Number(req.params.id)
+        if (!id || id >= generateId())
+            res.status(404).end()
+        const person = persons.find(person => person.id === id)
+    
+        res.send(`name: ${person.name}\nnumber: ${person.number}\n`); */
 })
 
 //--------------------------------delete-------------------------------------------
 
 app.delete('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id)
-    persons = persons.filter(person => person.id !== id)
-
-    response.status(204).end()
+    const id = request.params.id
+    
+    Person.findByIdAndDelete(id)
+        .then(() => {
+            response.status(204).end()
+        })
+        .catch(error => {
+            console.log(error)
+            response.status(400).send({ error: 'Malformatted id' })
+        })
 })
 
 //------------------------------post-----------------------------------------------
