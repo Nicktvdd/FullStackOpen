@@ -2,7 +2,6 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const Person = require('./models/person')
-const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 
@@ -11,7 +10,6 @@ const cors = require('cors')
 app.use(express.static('dist'))
 app.use(cors())
 app.use(express.json())
-app.use(bodyParser.json());
 app.use(morgan((tokens, req, res) => {
     return [
         tokens.method(req, res),
@@ -29,9 +27,14 @@ app.get('/', (req, res) => {
     res.send('<h1>Welcome to the ultimate phonebook in Node.js</h1>')
 })
 
-app.get('/info', (req, res) => {
-    const maxId = Person.length > 0
-    res.send(`Phonebook has info for ${generateId()}<br/>${new Date()}`)
+app.get('/info', (request, response) => {
+    Person.countDocuments({}, (error, count) => {
+        if (error) {
+            console.log(error)
+            return response.status(500).send('Error while fetching data')
+        }
+        response.send(`Phonebook has info for ${count} persons<br/>${new Date()}`)
+    })
 })
 
 app.get('/api/persons', (request, response) => {
