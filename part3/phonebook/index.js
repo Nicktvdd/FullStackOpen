@@ -40,9 +40,9 @@ app.get('/api/persons', (request, response) => {
     })
 })
 
-app.get('/api/persons/:id', (req, res) => {
+app.get('/api/persons/:id', (request, response) => {
     Person.findById(request.params.id).then(person => {
-        express.response.json(person)
+        response.json(person)
     })
 })
 
