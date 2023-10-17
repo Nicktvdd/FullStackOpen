@@ -65,18 +65,6 @@ app.get('/api/persons/:id', (request, response, next) => {
         .catch(error => next(error))
 })
 
-//--------------------------------delete-------------------------------------------
-
-app.delete('/api/persons/:id', (request, response, next) => { // Added 'next' parameter
-    const id = request.params.id
-
-    Person.findByIdAndRemove(id)
-        .then(() => {
-            response.status(204).end()
-        })
-        .catch(error => next(error))
-})
-
 //------------------------------post-----------------------------------------------
 
 app.post('/api/persons', (request, response, next) => {
@@ -116,6 +104,18 @@ app.put('/api/persons/:id', (request, response, next) => {
     Person.findByIdAndUpdate(id, updatedPerson, { new: true })
         .then(updatedPerson => {
             response.json(updatedPerson)
+        })
+        .catch(error => next(error))
+})
+
+//--------------------------------delete-------------------------------------------
+
+app.delete('/api/persons/:id', (request, response, next) => { // Added 'next' parameter
+    const id = request.params.id
+
+    Person.findByIdAndRemove(id)
+        .then(() => {
+            response.status(204).end()
         })
         .catch(error => next(error))
 })
