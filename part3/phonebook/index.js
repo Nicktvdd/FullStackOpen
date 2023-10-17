@@ -70,7 +70,7 @@ app.get('/api/persons/:id', (request, response, next) => {
 app.post('/api/persons', (request, response, next) => {
     const body = request.body;
 
-    if (!body || !body.name || !body.number) {
+    if (!body || !body.name || !body.number || body.content === undefined) {
         return response.status(400).json({
             error: 'Phonebook data insertion failed, data seems to be missing. If you have forgotten your name, please seek medical help'
         })
@@ -92,6 +92,8 @@ app.post('/api/persons', (request, response, next) => {
         })
         .catch(error => next(error))
 })
+
+//------------------------------put-----------------------------------------------
 
 app.put('/api/persons/:id', (request, response, next) => {
     const id = request.params.id
