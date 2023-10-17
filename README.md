@@ -1,5 +1,5 @@
 # FullStackOpen (Under construction)
-*Part 0, 1 and 2 are finished, 3 is under construction.*
+*Part 0, 1, 2 and 3 are finished, 4 is under construction.*
 
 Check out the phonebook [here](https://phonebook-nsae.onrender.com). It's created with MERN(MongoDb, Express, React, Node) Axios, Mongoose, Vite and hosted on Render, and still a work in progress.
 
