@@ -89,27 +89,32 @@ app.post('/api/persons', (request, response, next) => {
 
     Person.findOne({ name: body.name })
         .then(existingPerson => {
-            if (existingPerson) {
-                const updatedPerson = {
-                    name: body.name,
-                    number: body.number
-                }
-                Person.findOneAndUpdate({ name: body.name }, updatedPerson, { new: true })
-                    .then(updatedPerson => {
-                        response.json(updatedPerson)
-                    })
-                    .catch(error => next(error))
-            } else {
+            if (!existingPerson) {
                 const person = new Person({
                     name: body.name,
                     number: body.number
                 })
                 person.save()
                     .then(newPerson => {
-                        response.json(newPerson)
+                        response.json(newPerson);
                     })
-                    .catch(error => next(error))
+                    .catch(error => next(error));
             }
+        })
+        .catch(error => next(error))
+})
+
+app.put('/api/persons/:id', (request, response, next) => {
+    const id = request.params.id
+    const body = request.body
+
+    const updatedPerson = {
+        name: body.name,
+        number: body.number
+    }
+    Person.findByIdAndUpdate(id, updatedPerson, { new: true })
+        .then(updatedPerson => {
+            response.json(updatedPerson)
         })
         .catch(error => next(error))
 })
