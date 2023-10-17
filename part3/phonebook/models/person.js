@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.set('strictQuery',false)
+mongoose.set('strictQuery', false)
 
 const url = process.env.MONGODB_URI
 
@@ -13,7 +13,7 @@ mongoose.connect(url)
     .catch((error) => {
         console.log('error connecting to MongoDB:', error.message)
     })
-    
+
 const personSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -24,7 +24,7 @@ const personSchema = new mongoose.Schema({
         type: String,
         required: true,
         validate: {
-            validator: function(number) {
+            validator: function (number) {
                 return /^\d{2,3}-\d+$/.test(number);
             },
             message: "Phone number must be in the format XX-XXXXXXXX (e.g., 09-1234556) or XXX-XXXXXXXX (e.g., 040-22334455)"

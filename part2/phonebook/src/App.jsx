@@ -26,12 +26,10 @@ const App = () => {
 
     const addPerson = (event) => {
         event.preventDefault()
-        const existingPerson = persons.find((person) => person.name === newName)
+        const existingPerson = persons.find((person) => person.name === newName);
 
         if (existingPerson) {
-            if (window.confirm(`${newName} 
-			is already added to the phonebook, 
-			replace the old number with a new one?`)) {
+            if (window.confirm(`${newName} is already added to the phonebook, replace the old number with a new one?`)) {
                 const updatedPerson = {
                     ...existingPerson,
                     number: newNumber
@@ -39,22 +37,18 @@ const App = () => {
                 personService
                     .update(existingPerson.id, updatedPerson)
                     .then(returnedPerson => {
-                        setPersons(persons.map((person) => (person.id === returnedPerson.id ? returnedPerson : person)))
+                        setPersons(persons.map((person) => (person.id === returnedPerson.id ? returnedPerson : person)));
                         setNewName('')
                         setNewNumber('')
-                        setPersons(persons.filter(p => p.id !== id))
                     })
                     .catch(error => {
-                        setErrorMessage(
-                            `Information of ${existingPerson.name} has already been removed from server`
-                        )
+                        setErrorMessage(`Information of ${existingPerson.name} has already been removed from the server`);
                         setTimeout(() => {
                             setErrorMessage(null)
                         }, 5000)
                     })
             }
-        }
-        else {
+        } else {
             const personObject = {
                 name: newName,
                 number: newNumber,
@@ -62,21 +56,19 @@ const App = () => {
             personService
                 .create(personObject)
                 .then(returnedPerson => {
-                    setPersons(persons.concat(returnedPerson))
-                    setNewName('')
-                    setNewNumber('')
-                    setMessage(
-                        `Added ${personObject.name} `
-                    )
+                    setPersons(persons.concat(returnedPerson));
+                    setNewName('');
+                    setNewNumber('');
+                    setMessage(`Added ${personObject.name}`);
                     setTimeout(() => {
-                        setMessage(null)
-                    }, 5000)
+                        setMessage(null);
+                    }, 5000);
                 })
                 .catch(error => {
-                    setErrorMessage('Validation error')
+                    setErrorMessage('Validation error');
                     setTimeout(() => {
-                        setErrorMessage(null)
-                    }, 5000)
+                        setErrorMessage(null);
+                    }, 5000);
                 })
         }
     }
