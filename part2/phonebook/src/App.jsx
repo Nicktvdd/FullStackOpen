@@ -72,6 +72,12 @@ const App = () => {
                         setMessage(null)
                     }, 5000)
                 })
+                .catch(error => {
+                    setErrorMessage('Validation error')
+                    setTimeout(() => {
+                        setErrorMessage(null)
+                    }, 5000)
+                })
         }
     }
 
