@@ -64,6 +64,11 @@ For additional guidance and support, refer to the official Full Stack Open cours
   - [Usage](#usage-part2)
   - [Exercises](#exersises-part2)
 
+- [Part 3 - Programming a Server with NodeJS and Express](#part-3---Programming-a-Server with-NodeJS-and-Express)
+  - [Technologies](#technologies-part3)
+  - [Usage](#usage-part3)
+  - [Exercises](#exersises-part3)
+
 # Part 0 - Fundamentals of web apps
 ## What I have learned
 
@@ -178,3 +183,43 @@ This repository contains exercises related to the following topics:
 - Full-stack development
 - Storing data on a server
 
+# Part 3 - Programming a Server with NodeJS and Express
+In this part I programmed a full-stack web phonebook that interacts with a database and deployed it online. Check out the phonebook [here](https://phonebook-nsae.onrender.com).
+
+## Technologies part3
+- JavaScript
+- Node.js
+- Express
+- RESTful APIs
+- JSON
+- NPM
+
+## Usage part3
+Navigate to the backend folder
+  ```bash
+  cd part3/phonebook
+  ```
+Run the program:
+  ```bash
+  npm run dev
+  ```
+  Navigate to the frontend folder
+  ```bash
+  cd ../../part2/phonebok
+  ```
+Run the program:
+  ```bash
+  npm run dev
+  ```
+  open the suggested port
+
+## Exercises part2
+
+### Phonebook
+**Description:** A Node.js and Express server that serves as the backend for a phonebook application. It demonstrates creating RESTful APIs, handling HTTP requests, and working with a database using Mongoose.
+
+**Key Concepts:**
+- Building a RESTful API
+- Handling HTTP requests
+- Database interactions with Mongoose
+- CRUD operations for a phonebook
