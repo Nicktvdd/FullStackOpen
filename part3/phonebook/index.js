@@ -37,13 +37,14 @@ app.get('/', (req, res) => {
 })
 
 app.get('/info', (request, response) => {
-    Person.countDocuments({}, (error, count) => {
-        if (error) {
-            console.error(error) // Use console.error for consistency
-            return response.status(500).send('Error while fetching data')
-        }
-        response.send(`Phonebook has info for ${count} persons<br/>${new Date()}`)
-    })
+    Person.countDocuments({})
+        .then(count => {
+            response.send(`Phonebook has info for ${count} persons<br/>${new Date()}`);
+        })
+        .catch(error => {
+            console.error(error);
+            response.status(500).send('Error while fetching data');
+        })
 })
 
 app.get('/api/persons', (request, response) => {
