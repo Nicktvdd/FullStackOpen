@@ -16,7 +16,6 @@ const requestLogger = (request, response, next) => {
 //---------------------------------use---------------------------------------------
 
 app.use(cors())
-app.use(express.json())
 app.use(requestLogger)
 app.use(express.static('dist'))
 app.use(morgan((tokens, req, res) => {
@@ -52,11 +51,11 @@ app.get('/api/persons', (request, response) => {
     })
 })
 
-app.get('/api/notes/:id', (request, response, next) => {
-    Note.findById(request.params.id)
-        .then(note => {
-            if (note) {
-                response.json(note)
+app.get('/api/persons/:id', (request, response, next) => {
+    Person.findById(request.params.id)
+        .then(person => {
+            if (person) {
+                response.json(person)
             }
             else {
                 response.status(404).end()
@@ -70,14 +69,11 @@ app.get('/api/notes/:id', (request, response, next) => {
 app.delete('/api/persons/:id', (request, response) => {
     const id = request.params.id
 
-    Person.findByIdAndDelete(id)
+    Person.findByIdAndRemove(id)
         .then(() => {
             response.status(204).end()
         })
-        .catch(error => {
-            console.log(error)
-            response.status(400).send({ error: 'Malformatted id' })
-        })
+        .catch(error => next(error))
 })
 
 //------------------------------post-----------------------------------------------
@@ -101,9 +97,12 @@ app.post('/api/persons', (request, response) => {
 
 //--------------------------------error-------------------------------------------
 
+app.use(express.json())
+
 const unknownEndpoint = (request, response) => {
     response.status(404).send({ error: 'unknown endpoint' })
   }
+
 app.use(unknownEndpoint)
 
 const errorHandler = (error, request, response, next) => {
