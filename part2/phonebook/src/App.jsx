@@ -48,7 +48,8 @@ const App = () => {
                         }, 5000)
                     })
             }
-        } else {
+        } 
+        else {
             const personObject = {
                 name: newName,
                 number: newNumber,

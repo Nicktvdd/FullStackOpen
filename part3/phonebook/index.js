@@ -70,7 +70,7 @@ app.get('/api/persons/:id', (request, response, next) => {
 app.post('/api/persons', (request, response, next) => {
     const body = request.body;
 
-    if (!body || !body.name || !body.number || body.content === undefined) {
+    if (!body || !body.name || !body.number) {
         return response.status(400).json({
             error: 'Phonebook data insertion failed, data seems to be missing. If you have forgotten your name, please seek medical help'
         })
@@ -103,7 +103,7 @@ app.put('/api/persons/:id', (request, response, next) => {
         name: body.name,
         number: body.number
     }
-    Person.findByIdAndUpdate(id, updatedPerson, { new: true })
+    Person.findByIdAndUpdate(id, updatedPerson, { new: true, runValidators:true, context: 'query' })
         .then(updatedPerson => {
             response.json(updatedPerson)
         })
