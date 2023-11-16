@@ -9,7 +9,4 @@ const blogSchema = new mongoose.Schema({
 
 const Blog = mongoose.model('Blog', blogSchema)
 
-const mongoUrl = process.env.MONGODB_URI
-mongoose.connect(mongoUrl)
-
 module.exports = mongoose.model('Blog', blogSchema)
