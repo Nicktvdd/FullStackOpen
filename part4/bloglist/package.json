@@ -11,6 +11,7 @@
   "author": "nick van den dungen",
   "license": "ISC",
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.0.1"
   },
   "dependencies": {
