@@ -80,6 +80,15 @@ test('id is defined for each blog', async () => {
   })
 })
 
+test('url and/or title is missing', async () => {
+  const response = await api.post('/api/blogs', {
+    author: 'Johnny doedle',
+    likes: 10
+  })
+
+  expect(response.status).toBe(400)
+})
+
 //doesn't pass
 /* test('blog without title is not added', async () => {
   const newBlog = {
