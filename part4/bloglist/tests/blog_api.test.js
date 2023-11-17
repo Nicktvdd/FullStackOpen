@@ -10,10 +10,10 @@ beforeEach(async () => {
   await Blog.deleteMany({})
 
   const blogObjects = helper.initialBlogs
-    .map(blog =>new Blog(blog))
+    .map(blog => new Blog(blog))
   const promiseArray = blogObjects.map(note => note.save())
   await Promise.all(promiseArray)
-  })
+})
 
 //---tests----
 test('blogs are returned as json', async () => {
@@ -47,27 +47,37 @@ test('a specific blog is within the returned blogs', async () => {
 test('a valid blog can be added', async () => {
   const newBlog =
   {
-      _id: "5a422bc61b54a676134d17fc",
-      title: "Star wars",
-      author: "Robert J. prancy",
-      url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/StarWars.html",
-      likes: 5,
-      __v: 0
+    _id: "5a422bc61b54a676134d17fc",
+    title: "Star wars",
+    author: "Robert J. prancy",
+    url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/StarWars.html",
+    likes: 5,
+    __v: 0
   }
 
   await api
-      .post('/api/blogs')
-      .send(newBlog)
-      .expect(201)
-      .expect('Content-Type', /application\/json/)
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
 
   const blogsAtEnd = await helper.blogsInDb()
   expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1)
 
   const titles = blogsAtEnd.map(n => n.title)
   expect(titles).toContain(
-      'Star wars'
+    'Star wars'
   )
+})
+
+test('id is defined for each blog', async () => {
+  const response = await api.get('/api/blogs')
+
+  const blogsArray = response.body.map(r => r.id)
+
+  blogsArray.forEach(id => {
+    expect(id).toBeDefined()
+  })
 })
 
 //doesn't pass
