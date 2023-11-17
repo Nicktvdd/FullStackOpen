@@ -10,9 +10,10 @@ beforeEach(async () => {
   await Blog.deleteMany({})
   console.log('cleared')
 
-  helper.initialBlogs.forEach(async (blog) => {
-    let blogObject = new Blog(blog)
-    await blogObject.save()
+  const blogObjects = helper.initialBlogs
+    .map(blog =>new Blog(blog))
+  const promiseArray = blogObjects.map(note => note.save())
+  await Promise.all(promiseArray)
     console.log('saved')
   })
 console.log('done')
@@ -20,6 +21,7 @@ console.log('done')
 
 //---tests----
 test('blogs are returned as json', async () => {
+  console.log('entered test')
   await api
     .get('/api/blogs')
     .expect(200)
