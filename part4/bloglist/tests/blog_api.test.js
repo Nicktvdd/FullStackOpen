@@ -8,20 +8,15 @@ const Blog = require('../models/blog')
 
 beforeEach(async () => {
   await Blog.deleteMany({})
-  console.log('cleared')
 
   const blogObjects = helper.initialBlogs
     .map(blog =>new Blog(blog))
   const promiseArray = blogObjects.map(note => note.save())
   await Promise.all(promiseArray)
-    console.log('saved')
   })
-console.log('done')
-})
 
 //---tests----
 test('blogs are returned as json', async () => {
-  console.log('entered test')
   await api
     .get('/api/blogs')
     .expect(200)
