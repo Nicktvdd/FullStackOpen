@@ -1,5 +1,6 @@
 blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
+const { nonExistingId } = require('../tests/test_helper')
 
 blogsRouter.get('/', async (request, response) => {
   const blogs = await Blog.find({})
@@ -9,8 +10,12 @@ blogsRouter.get('/', async (request, response) => {
 blogsRouter.post('/', async (request, response) => {
   const blog = new Blog(request.body)
 
-  const result = await blog.save()
-  response.status(201).json(result)
+  try {
+    const result = await blog.save()
+    response.status(201).json(result)
+  } catch (exception) {
+    next(exception)
+  }
 })
 
 module.exports = blogsRouter
