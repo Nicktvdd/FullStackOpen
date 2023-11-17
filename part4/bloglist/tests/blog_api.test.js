@@ -58,3 +58,32 @@ test('a specific blog is within the returned blogs', async () => {
     "Go To Statement Considered Harmful"
   )
 })
+
+
+//---new---
+test('a valid note can be added', async () => {
+  const newBlog =
+  {
+      _id: "5a422bc61b54a676134d17fc",
+      title: "Star wars",
+      author: "Robert J. prancy",
+      url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/StarWars.html",
+      likes: 5,
+      __v: 0
+  }
+
+  await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+
+  const response = await api.get('/api/blogs')
+
+  const titles = response.body.map(r => r.title)
+
+  expect(response.body).toHaveLength(initialBlogs.length + 1)
+  expect(titles).toContain(
+      'Star wars'
+  )
+})
