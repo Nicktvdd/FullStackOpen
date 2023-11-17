@@ -43,7 +43,7 @@ test('a specific blog is within the returned blogs', async () => {
 
 
 //---new---
-test('a valid note can be added', async () => {
+test('a valid blog can be added', async () => {
   const newBlog =
   {
       _id: "5a422bc61b54a676134d17fc",
@@ -70,7 +70,7 @@ test('a valid note can be added', async () => {
 })
 
 //doesn't pass
-test('note without content is not added', async () => {
+test('blog without title is not added', async () => {
   const newBlog = {
     author: "Empty man"
   }
@@ -85,6 +85,39 @@ test('note without content is not added', async () => {
   expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length)
 })
 
+//---view---
+/* test('a specific blog can be viewed', async () => {
+  const blogsAtStart = await helper.blogsInDb()
+
+  const blogToView = blogsAtStart[0]
+
+  const resultBlog = await api
+    .get(`/api/blogs/${blogToView.id}`)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+
+  expect(resultblog.body).toEqual(blogToView)
+})
+
+test('a blog can be deleted', async () => {
+  const blogsAtStart = await helper.blogsInDb()
+  const blogToDelete = blogsAtStart[0]
+
+  await api
+    .delete(`/api/blogs/${blogToDelete.id}`)
+    .expect(204)
+
+  const blogsAtEnd = await helper.blogsInDb()
+
+  expect(blogsAtEnd).toHaveLength(
+    helper.initialBlogs.length - 1
+  )
+
+  const titles = blogsAtEnd.map(r => r.title)
+
+  expect(titles).not.toContain(blogToDelete.title)
+})
+ */
 afterAll(async () => {
   await mongoose.connection.close()
 })
