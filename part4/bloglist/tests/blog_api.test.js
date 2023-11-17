@@ -42,7 +42,6 @@ test('a specific blog is within the returned blogs', async () => {
   )
 })
 
-
 //---new---
 test('a valid blog can be added', async () => {
   const newBlog =
@@ -80,6 +79,32 @@ test('id is defined for each blog', async () => {
   })
 })
 
+test('likes is missing and defaults to 0', async () => {
+  const newBlog =
+  {
+    _id: "5a422bc61b54a676134d17fc",
+    title: "Star wars",
+    author: "Robert J. prancy",
+    url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/StarWars.html",
+    like: 5,
+    __v: 0
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+
+  const blogsAtEnd = await helper.blogsInDb()
+  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1)
+
+  console.log(blogsAtEnd.like);
+  const likes = blogsAtEnd.map(n => n.like)
+  expect(likes).toContain(
+    0
+  )
+})
+
 test('url and/or title is missing', async () => {
   const response = await api.post('/api/blogs', {
     author: 'Johnny doedle',
@@ -88,6 +113,7 @@ test('url and/or title is missing', async () => {
 
   expect(response.status).toBe(400)
 })
+
 
 //doesn't pass
 /* test('blog without title is not added', async () => {
