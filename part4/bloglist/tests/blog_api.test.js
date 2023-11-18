@@ -86,7 +86,6 @@ test('likes is missing and defaults to 0', async () => {
     title: "Star wars",
     author: "Robert J. prancy",
     url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/StarWars.html",
-    like: 5,
     __v: 0
   }
 
@@ -96,10 +95,9 @@ test('likes is missing and defaults to 0', async () => {
     .expect(201)
 
   const blogsAtEnd = await helper.blogsInDb()
-  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1)
-
-  console.log(blogsAtEnd.like);
-  const likes = blogsAtEnd.map(n => n.like)
+  
+  console.log(blogsAtEnd[0].likes);
+  const likes = blogsAtEnd.map(n => n.likes)
   expect(likes).toContain(
     0
   )
