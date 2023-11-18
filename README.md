@@ -1,7 +1,7 @@
 # FullStackOpen (Under construction)
 *Part 0, 1, 2 and 3 are finished, 4 is under construction.*
 
-Check out the phonebook [here](https://phonebook-nsae.onrender.com). It's created with MERN(MongoDb, Express, React, Node) Axios, Mongoose, Vite and hosted on Render, and still a work in progress.
+Check out the phonebook [here](https://phonebook-nsae.onrender.com). It's created with MERN(MongoDb, Express, React, Node) Axios, Mongoose, Vite and hosted on Render.
 
 ## Introduction
 **Full Stack Open** is a comprehensive online course offered by the University of Helsinki, designed to teach modern web development from the ground up. It covers a wide range of topics, from the basics of web architecture to building full-stack web applications using cutting-edge technologies.
@@ -224,4 +224,4 @@ Run the program:
 - Database interactions with Mongoose
 - CRUD operations for a phonebook
 
-4.1-4.5 4.8-4.10 4.12
+4.1-4.5 4.8-4.14
