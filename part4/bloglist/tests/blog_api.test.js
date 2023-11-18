@@ -95,12 +95,8 @@ test('likes is missing and defaults to 0', async () => {
     .expect(201)
 
   const blogsAtEnd = await helper.blogsInDb()
-  
-  console.log(blogsAtEnd[0].likes);
-  const likes = blogsAtEnd.map(n => n.likes)
-  expect(likes).toContain(
-    0
-  )
+ // const likes = blogsAtEnd.map(n => n.likes)
+  expect(blogsAtEnd[2].likes).toBe(0)
 })
 
 test('url and/or title is missing', async () => {
@@ -112,6 +108,24 @@ test('url and/or title is missing', async () => {
   expect(response.status).toBe(400)
 })
 
+test('a blog can be deleted', async () => {
+  const blogsAtStart = await helper.blogsInDb()
+  const blogToDelete = blogsAtStart[0]
+
+  await api
+    .delete(`/api/blogs/${blogToDelete.id}`)
+    .expect(204)
+
+  const blogsAtEnd = await helper.blogsInDb()
+
+  expect(blogsAtEnd).toHaveLength(
+    helper.initialBlogs.length - 1
+  )
+
+  const titles = blogsAtEnd.map(r => r.title)
+
+  expect(titles).not.toContain(blogToDelete.title)
+})
 
 //doesn't pass
 /* test('blog without title is not added', async () => {
@@ -143,24 +157,7 @@ test('url and/or title is missing', async () => {
   expect(resultblog.body).toEqual(blogToView)
 })
 
-test('a blog can be deleted', async () => {
-  const blogsAtStart = await helper.blogsInDb()
-  const blogToDelete = blogsAtStart[0]
 
-  await api
-    .delete(`/api/blogs/${blogToDelete.id}`)
-    .expect(204)
-
-  const blogsAtEnd = await helper.blogsInDb()
-
-  expect(blogsAtEnd).toHaveLength(
-    helper.initialBlogs.length - 1
-  )
-
-  const titles = blogsAtEnd.map(r => r.title)
-
-  expect(titles).not.toContain(blogToDelete.title)
-})
  */
 afterAll(async () => {
   await mongoose.connection.close()
