@@ -127,6 +127,29 @@ test('a blog can be deleted', async () => {
   expect(titles).not.toContain(blogToDelete.title)
 })
 
+test('a blog can be changed', async () => {
+  const blogsAtStart = await helper.blogsInDb()
+  const blogToChange = blogsAtStart[0]
+
+  const updatedBlogData = {
+    likes: 1000000,
+  }
+
+  await api
+    .put(`/api/blogs/${blogToChange.id}`)
+    .send(updatedBlogData)
+    .expect(200)
+
+  const blogsAtEnd = await helper.blogsInDb()
+  expect(blogsAtEnd).toHaveLength(
+    helper.initialBlogs.length
+  )
+  const likes = blogsAtEnd.map(r => r.likes)
+  expect(likes).toContain(updatedBlogData.likes)
+})
+
+
+
 //doesn't pass
 /* test('blog without title is not added', async () => {
   const newBlog = {
