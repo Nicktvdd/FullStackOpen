@@ -4,8 +4,7 @@ const User = require('../models/user')
 const { nonExistingId } = require('../tests/test_helper')
 
 blogsRouter.get('/', async (request, response) => {
-  const blogs = await Blog.find({})
-
+  const blogs = await Blog.find({}).populate('user')
   response.json(blogs)
 })
 
@@ -17,7 +16,14 @@ blogsRouter.post('/', async (request, response) => {
 
   const user = await User.findOne()
 
-  const blog = new Blog(body, { user: user._id})
+  const blog = new Blog({
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes,
+    comments: body.comments,
+    user: user._id
+})
 
   const result = await blog.save()
   
