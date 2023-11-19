@@ -98,7 +98,8 @@ test('likes is missing and defaults to 0', async () => {
 
   const blogsAtEnd = await helper.blogsInDb()
  // const likes = blogsAtEnd.map(n => n.likes)
-  expect(blogsAtEnd[2].likes).toBe(0)
+ const lastBlog = blogsAtEnd[blogsAtEnd.length - 1]
+  expect(lastBlog.likes).toBe(0)
 })
 
 test('url and/or title is missing', async () => {
