@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Blog from './components/Blog'
+import Notification from "./components/Notification"
 import blogService from './services/blogs'
 import loginService from './services/login'
 
@@ -78,12 +79,13 @@ const App = () => {
   const blogForm = () => (
     <div>
       <h2>blogs</h2>
+      <p>
+        <span className="active-user">{user.name}</span> logged in{" "}
+        <button id="logout-btn" onClick={handleLogout}>
+          logout
+        </button>
+      </p>
 
-
-      {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
-      )}
-      
       <form onSubmit={addBlog}>
         <input
           value={newBlog}
@@ -91,7 +93,13 @@ const App = () => {
         />
         <button type="submit">save</button>
       </form>
-      <button type="logout">logout</button>
+
+      {blogs.map(blog =>
+        <Blog key={blog.id} blog={blog} />
+      )}
+
+
+
     </div>
   )
 
@@ -99,7 +107,7 @@ const App = () => {
     <div>
 
       <Notification message={errorMessage} />
-      
+
       {user === null ?
         loginForm() :
         blogForm()
