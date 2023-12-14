@@ -81,18 +81,18 @@ const App = () => {
       <h2>blogs</h2>
       <p>
         <span className="active-user">{user.name}</span> logged in{" "}
-        <button id="logout-btn" onClick={handleLogout}>
+{/*         <button id="logout-btn" onClick={handleLogout}>
           logout
-        </button>
+        </button> */}
       </p>
 
-      <form onSubmit={addBlog}>
+{/*       <form onSubmit={addBlog}>
         <input
           value={newBlog}
           onChange={handleBlogChange}
         />
         <button type="submit">save</button>
-      </form>
+      </form> */}
 
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
