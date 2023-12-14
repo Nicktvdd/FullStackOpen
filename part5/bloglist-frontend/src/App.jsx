@@ -34,6 +34,22 @@ const App = () => {
     }
   }
 
+  const handleLogout = async (event) => {
+    event.preventDefault()
+
+    try {
+      window.localStorage.removeItem(
+        'loggedBlogappUser', JSON.stringify(user),
+        window.location.reload(false)
+      )
+      } catch (exception) {
+      setErrorMessage('You are already logged out')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
+  }
+
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs(blogs)
@@ -81,9 +97,9 @@ const App = () => {
       <h2>blogs</h2>
       <p>
         <span className="active-user">{user.name}</span> logged in{" "}
-{/*         <button id="logout-btn" onClick={handleLogout}>
+        <button id="logout-btn" onClick={handleLogout}>
           logout
-        </button> */}
+        </button>
       </p>
 
 {/*       <form onSubmit={addBlog}>
@@ -105,7 +121,6 @@ const App = () => {
 
   return (
     <div>
-
       <Notification message={errorMessage} />
 
       {user === null ?
