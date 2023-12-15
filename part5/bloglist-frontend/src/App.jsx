@@ -6,6 +6,7 @@ import loginService from './services/login'
 
 const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
+  const [message, setMessage] = useState(null)
   const [blogs, setBlogs] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -49,25 +50,25 @@ const App = () => {
     setNewUrl(event.target.value)
   }
 
-  const addBlog = async (event) => {
+  const addBlog = (event) => {
     event.preventDefault()
     const blogObject = {
       title: newTitle,
       author: newAuthor,
       url: newUrl,
     }
-    await blogService.create(blogObject)
+    blogService.create(blogObject)
     returnedBlog => {
       setBlogs(blogs.concat(returnedBlog))
       setNewTitle('')
       setNewAuthor('')
       setNewUrl('')
-      setErrorMessage(`Added ${blogObject.title}`)
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
       // reload here? window.location.reload(false)
     }
+    setMessage(`Added ${blogObject.title}`)
+    setTimeout(() => {
+      setMessage(null)
+    }, 5000) 
   }
 
 
@@ -165,6 +166,7 @@ const blogForm = () => (
 return (
   <div>
     <Notification message={errorMessage} />
+    <Notification message={message} />
 
     {user === null ?
       loginForm() :
