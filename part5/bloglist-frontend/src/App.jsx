@@ -5,6 +5,7 @@ import blogService from './services/blogs'
 import loginService from './services/login'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
+import BlogForm from './components/BlogForm'
 
 const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
@@ -52,14 +53,14 @@ const App = () => {
     setNewUrl(event.target.value)
   }
 
-  const addBlog = (event) => {
+  const addBlog = async (event) => {
     event.preventDefault()
     const blogObject = {
       title: newTitle,
       author: newAuthor,
       url: newUrl,
     }
-    blogService.create(blogObject)
+    const returnedBlog = await blogService.create(blogObject)
     returnedBlog => {
       setBlogs(blogs.concat(returnedBlog))
       setNewTitle('')
@@ -128,27 +129,21 @@ const App = () => {
           logout
         </button>
       </p>
-      <form onSubmit={addBlog}>
-        <div>Title: <input value={newTitle} onChange={handleTitleChange} /></div>
-        <div>Author: <input value={newAuthor} onChange={handleAuthorChange} /></div>
-        <div>Url: <input value={newUrl} onChange={handleUrlChange} /></div>
-        <div><button type="submit">add</button></div>
-      </form>
-
-      {/*       <form onSubmit={addBlog}>
-        <input
-          value={newBlog}
-          onChange={handleBlogChange}
+      <Togglable buttonLabel="new blog">
+        <BlogForm
+          addBlog={addBlog}
+          newTitle={newTitle}
+          newAuthor={newAuthor}
+          newUrl={newUrl}
+          handleTitleChange={handleTitleChange}
+          handleAuthorChange={handleAuthorChange}
+          handleUrlChange={handleUrlChange}
         />
-        <button type="submit">save</button>
-      </form> */}
+      </Togglable>
 
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
-
-
-
     </div>
   )
 
