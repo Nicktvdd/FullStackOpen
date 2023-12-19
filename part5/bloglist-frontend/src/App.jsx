@@ -4,6 +4,7 @@ import Notification from "./components/Notification"
 import blogService from './services/blogs'
 import loginService from './services/login'
 import LoginForm from './components/LoginForm'
+import Togglable from './components/Togglable'
 
 const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
@@ -69,51 +70,44 @@ const App = () => {
     setMessage(`Added ${blogObject.title}`)
     setTimeout(() => {
       setMessage(null)
-    }, 5000) 
-  }
-
-
-const handleLogout = (event) => {
-  event.preventDefault()
-
-  try {
-    window.localStorage.removeItem(
-      'loggedBlogappUser', JSON.stringify(user),
-      window.location.reload(false)
-    )
-  } catch (exception) {
-    setErrorMessage('You are already logged out')
-    setTimeout(() => {
-      setErrorMessage(null)
     }, 5000)
   }
-}
 
-useEffect(() => {
-  blogService.getAll().then(blogs =>
-    setBlogs(blogs)
-  )
-}, [])
 
-useEffect(() => {
-  const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
-  if (loggedUserJSON) {
-    const user = JSON.parse(loggedUserJSON)
-    setUser(user)
-    blogService.setToken(user.token)
+  const handleLogout = (event) => {
+    event.preventDefault()
+
+    try {
+      window.localStorage.removeItem(
+        'loggedBlogappUser', JSON.stringify(user),
+        window.location.reload(false)
+      )
+    } catch (exception) {
+      setErrorMessage('You are already logged out')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
   }
-}, [])
 
-const loginForm = () => {
-  const hideWhenVisible = { display: loginVisible ? 'none' : '' }
-  const showWhenVisible = { display: loginVisible ? '' : 'none' }
+  useEffect(() => {
+    blogService.getAll().then(blogs =>
+      setBlogs(blogs)
+    )
+  }, [])
 
-  return (
-    <div>
-      <div style={hideWhenVisible}>
-        <button onClick={() => setLoginVisible(true)}>log in</button>
-      </div>
-      <div style={showWhenVisible}>
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      blogService.setToken(user.token)
+    }
+  }, [])
+
+  const loginForm = () => {
+    return (
+      <Togglable buttonLabel='login'>
         <LoginForm
           username={username}
           password={password}
@@ -121,29 +115,27 @@ const loginForm = () => {
           handlePasswordChange={({ target }) => setPassword(target.value)}
           handleSubmit={handleLogin}
         />
-        <button onClick={() => setLoginVisible(false)}>cancel</button>
-      </div>
-    </div>
-  )
-}
+      </Togglable>
+    )
+  }
 
-const blogForm = () => (
-  <div>
-    <h2>blogs</h2>
-    <p>
-      <span className="active-user">{user.name}</span> logged in{" "}
-      <button id="logout-btn" onClick={handleLogout}>
-        logout
-      </button>
-    </p>
-    <form onSubmit={addBlog}>
-      <div>Title: <input value={newTitle} onChange={handleTitleChange} /></div>
-      <div>Author: <input value={newAuthor} onChange={handleAuthorChange} /></div>
-      <div>Url: <input value={newUrl} onChange={handleUrlChange} /></div>
-      <div><button type="submit">add</button></div>
-    </form>
+  const blogForm = () => (
+    <div>
+      <h2>blogs</h2>
+      <p>
+        <span className="active-user">{user.name}</span> logged in{" "}
+        <button id="logout-btn" onClick={handleLogout}>
+          logout
+        </button>
+      </p>
+      <form onSubmit={addBlog}>
+        <div>Title: <input value={newTitle} onChange={handleTitleChange} /></div>
+        <div>Author: <input value={newAuthor} onChange={handleAuthorChange} /></div>
+        <div>Url: <input value={newUrl} onChange={handleUrlChange} /></div>
+        <div><button type="submit">add</button></div>
+      </form>
 
-    {/*       <form onSubmit={addBlog}>
+      {/*       <form onSubmit={addBlog}>
         <input
           value={newBlog}
           onChange={handleBlogChange}
@@ -151,27 +143,27 @@ const blogForm = () => (
         <button type="submit">save</button>
       </form> */}
 
-    {blogs.map(blog =>
-      <Blog key={blog.id} blog={blog} />
-    )}
+      {blogs.map(blog =>
+        <Blog key={blog.id} blog={blog} />
+      )}
 
 
 
-  </div>
-)
+    </div>
+  )
 
-return (
-  <div>
-    <Notification message={errorMessage} />
-    <Notification message={message} />
+  return (
+    <div>
+      <Notification message={errorMessage} />
+      <Notification message={message} />
 
-    {user === null ?
-      loginForm() :
-      blogForm()
-    }
+      {user === null ?
+        loginForm() :
+        blogForm()
+      }
 
-  </div>
-)
+    </div>
+  )
 }
 
 export default App
