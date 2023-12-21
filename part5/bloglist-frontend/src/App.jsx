@@ -38,16 +38,20 @@ const App = () => {
   }
 
   const addBlog = async (blogObject) => {
-    const returnedBlog = await blogService.create(blogObject)
-    returnedBlog => {
+    try {
+      const returnedBlog = await blogService.create(blogObject)
       setBlogs(blogs.concat(returnedBlog))
 
-      // reload here? window.location.reload(false)
+      setMessage(`Added ${blogObject.title}`)
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    } catch (exception) {
+      setMessage(`Error adding blog`)
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
     }
-    setMessage(`Added ${blogObject.title}`)
-    setTimeout(() => {
-      setMessage(null)
-    }, 5000)
   }
 
   const handleLogout = (event) => {
@@ -56,8 +60,8 @@ const App = () => {
     try {
       window.localStorage.removeItem(
         'loggedBlogappUser', JSON.stringify(user),
-        window.location.reload(false)
       )
+      window.location.reload(false)
     } catch (exception) {
       setErrorMessage('You are already logged out')
       setTimeout(() => {
@@ -105,7 +109,7 @@ const App = () => {
         </button>
       </p>
       <Togglable buttonLabel="new blog">
-        <BlogForm createBlog={addBlog}/>
+        <BlogForm createBlog={addBlog} />
       </Togglable>
 
       {blogs.map(blog =>
