@@ -72,9 +72,12 @@ const App = () => {
   }
 
   useEffect(() => {
-    blogService.getAll().then(blogs =>
+    const fetchBlogs = async () => {
+      const blogs = await blogService.getAll()
       setBlogs(blogs)
-    )
+    }
+
+    fetchBlogs()
   }, [])
 
   useEffect(() => {
