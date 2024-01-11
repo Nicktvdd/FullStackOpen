@@ -31,6 +31,7 @@ const Blog = ({ blog, user }) => {
   const handleRemove = async () => {
     if (window.confirm(`remove blog ${blog.title} by ${blog.author}`)) {
       const removedBlogPost = await blogService.remove(blog.id)
+      window.location.reload(false)
     }
   }
 
