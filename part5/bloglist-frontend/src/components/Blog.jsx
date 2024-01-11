@@ -28,12 +28,17 @@ console.log(newObject)
     setLikes(updatedBlogPost.likes)
   }
 
+  const handleRemove = async () => {
+    const removedBlogPost = await blogService.remove(blog.id)
+  }
+
   const ExtraInfo = () => {
     return(
       <div>
       <div>{blog.url}</div>
       <div>likes: {likes} <button onClick={handleLike}>like</button></div>
       <div>{blog.user.name}</div>
+      <div><button onClick={handleRemove}>remove</button></div>
       </div>
       )
    }
