@@ -23,30 +23,32 @@ const Blog = ({ blog }) => {
       ...blog,
       likes: newLikesCount
     }
-console.log(newObject)
+    console.log(newObject)
     const updatedBlogPost = await blogService.update(blog.id, newObject)
     setLikes(updatedBlogPost.likes)
   }
 
   const handleRemove = async () => {
-    const removedBlogPost = await blogService.remove(blog.id)
+    if (window.confirm(`remove blog ${blog.title} by ${blog.author}`)) {
+      const removedBlogPost = await blogService.remove(blog.id)
+    }
   }
 
   const ExtraInfo = () => {
-    return(
+    return (
       <div>
-      <div>{blog.url}</div>
-      <div>likes: {likes} <button onClick={handleLike}>like</button></div>
-      <div>{blog.user.name}</div>
-      <div><button onClick={handleRemove}>remove</button></div>
+        <div>{blog.url}</div>
+        <div>likes: {likes} <button onClick={handleLike}>like</button></div>
+        <div>{blog.user.name}</div>
+        <div><button onClick={handleRemove}>remove</button></div>
       </div>
-      )
-   }
+    )
+  }
 
   return (
     <div style={blogStyle}>
       <div>{blog.title}
-      <button onClick={toggleDetails}>{showDetails ? 'Hide Details' : 'Show Details'}</button>
+        <button onClick={toggleDetails}>{showDetails ? 'Hide Details' : 'Show Details'}</button>
       </div>
       <div>{blog.author}</div>
       <div>{showDetails && <ExtraInfo />}</div>
