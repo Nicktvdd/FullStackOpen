@@ -24,6 +24,8 @@ const Togglable = (props) => {
   )
 }
 
+Togglable.displayName = 'Togglable'
+
 Togglable.propTypes = {
   buttonLabel: PropTypes.string.isRequired
 }

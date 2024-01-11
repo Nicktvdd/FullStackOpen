@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import Blog from './components/Blog'
-import Notification from "./components/Notification"
+import Notification from './components/Notification'
 import blogService from './services/blogs'
 import loginService from './services/login'
 import LoginForm from './components/LoginForm'
@@ -48,7 +48,7 @@ const App = () => {
         setMessage(null)
       }, 5000)
     } catch (exception) {
-      setMessage(`Error adding blog`)
+      setMessage('Error adding blog')
       setTimeout(() => {
         setMessage(null)
       }, 5000)
@@ -107,7 +107,7 @@ const App = () => {
     <div>
       <h2>blogs</h2>
       <p>
-        <span className="active-user">{user.name}</span> logged in{" "}
+        <span className="active-user">{user.name}</span> logged in{' '}
         <button id="logout-btn" onClick={handleLogout}>
           logout
         </button>
