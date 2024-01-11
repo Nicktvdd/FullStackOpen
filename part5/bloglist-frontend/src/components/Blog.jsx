@@ -24,7 +24,7 @@ const Blog = ({ blog }) => {
       likes: newLikesCount
     }
 console.log(newObject)
-    const updatedBlogPost = await blogService.update(blog._id, newObject)
+    const updatedBlogPost = await blogService.update(blog.id, newObject)
     setLikes(updatedBlogPost.likes)
   }
 
