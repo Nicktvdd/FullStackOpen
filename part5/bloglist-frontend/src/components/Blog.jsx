@@ -37,7 +37,7 @@ const Blog = ({ blog, user }) => {
 
   const ExtraInfo = () => {
     return (
-      <div>
+      <div className='blog'>
         <div>{blog.url}</div>
         <div>likes: {likes} <button onClick={handleLike}>like</button></div>
         <div>{blog.user.name}</div>
