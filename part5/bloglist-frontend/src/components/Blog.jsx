@@ -13,7 +13,7 @@ const Blog = ({ blog, user }) => {
     marginBottom: 5
   }
 
-  const toggleDetails = () => {
+  const toggleDetails = (blog) => {
     setShowDetails(!showDetails)
   }
 
@@ -51,7 +51,7 @@ const Blog = ({ blog, user }) => {
   return (
     <div style={blogStyle}>
       <div>{blog.title}
-        <button onClick={toggleDetails}>{showDetails ? 'Hide Details' : 'Show Details'}</button>
+        <button onClick={() => toggleDetails(blog)}>{showDetails ? 'Hide Details' : 'Show Details'}</button>
       </div>
       <div>{blog.author}</div>
       <div>{showDetails && <ExtraInfo />}</div>

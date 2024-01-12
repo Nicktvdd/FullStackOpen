@@ -1,6 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Blog from './Blog'
 
@@ -18,7 +18,7 @@ test('renders content', () => {
   expect(element).toBeDefined()
 })
 
-test('displays blogs tittle and author, but not url or number of likes', () => {
+test('displays blogs title and author, but not url or number of likes', () => {
   const blog = {
     title: 'Component testing is done with react-testing-library',
     author: 'me',
@@ -38,11 +38,12 @@ test('displays blogs tittle and author, but not url or number of likes', () => {
 })
 
 
-/* test('clicking the button calls event handler once', async () => {
+test('clicking the button calls event handler once', async () => {
   const blog = {
     title: 'Component testing is done with react-testing-library',
     author: 'me',
-    url: 'www.sheep.ue'
+    url: 'www.sheep.ue',
+    likes: 7,
   }
 
   const mockHandler = jest.fn()
@@ -51,10 +52,13 @@ test('displays blogs tittle and author, but not url or number of likes', () => {
     <Blog blog={blog} toggleDetails={mockHandler} />
   )
 
-  const user = userEvent.setup()
-  const button = screen.queryByText('Show Details')
-  await user.click(button)
+  const button = screen.getByText('Show Details')
+  await userEvent.click(button)
 
-  expect(mockHandler.mock.calls).toHaveLength(1)
+  await waitFor(() => {
+    const url = screen.getByText('www.sheep.ue')
+    expect(url).toBeDefined()
+    const likes = screen.getByText('likes: 7')
+    expect(likes).toBeDefined()
+  })
 })
- */
