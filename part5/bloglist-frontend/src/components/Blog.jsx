@@ -40,8 +40,10 @@ const Blog = ({ blog, user }) => {
       <div className='blog'>
         <div>{blog.url}</div>
         <div>likes: {likes} <button onClick={handleLike}>like</button></div>
-        <div>{blog.user.name}</div>
-        {user.name === blog.user.name && <div><button onClick={handleRemove}>remove</button></div>}
+        {blog.user && <div>{blog.user.name}</div>}
+        {user && user.name === (blog.user && blog.user.name) && (
+          <div><button onClick={handleRemove}>remove</button></div>
+        )}
       </div>
     )
   }
