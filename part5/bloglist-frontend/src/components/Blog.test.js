@@ -38,7 +38,7 @@ test('displays blogs title and author, but not url or number of likes', () => {
 })
 
 
-test('clicking the button calls event handler once', async () => {
+test('clicking the "show details" button displays url and likes', async () => {
   const blog = {
     title: 'Component testing is done with react-testing-library',
     author: 'me',
@@ -46,10 +46,8 @@ test('clicking the button calls event handler once', async () => {
     likes: 7,
   }
 
-  const mockHandler = jest.fn()
-
   render(
-    <Blog blog={blog} toggleDetails={mockHandler} />
+    <Blog blog={blog}/>
   )
 
   const button = screen.getByText('Show Details')
@@ -61,4 +59,28 @@ test('clicking the button calls event handler once', async () => {
     const likes = screen.getByText('likes: 7')
     expect(likes).toBeDefined()
   })
+})
+
+test('clicking the "like" button calls event handler twice', async () => {
+  const blog = {
+    title: 'Component testing is done with react-testing-library',
+    author: 'me',
+    url: 'www.sheep.ue',
+    likes: 7,
+  }
+
+  const mockHandler = jest.fn()
+
+
+  render(
+    <Blog blog={blog} handleLike={mockHandler} />
+  )
+
+  const button = screen.getByText('Show Details')
+  await userEvent.click(button)
+  const likeButton = screen.getByRole('button', { name: 'like' })
+  await userEvent.click(likeButton)
+  await userEvent.click(likeButton)
+
+  expect(mockHandler.mock.calls).toHaveLength(2)
 })
