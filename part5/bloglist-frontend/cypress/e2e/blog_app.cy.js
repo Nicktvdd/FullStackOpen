@@ -1,13 +1,13 @@
 describe('Blog app', function () {
   beforeEach(function () {
-    cy.request('POST', 'http://localhost:5173/api/testing/reset')
+    cy.request('POST', '/api/testing/reset')
     const user = {
       name: 'Matti Luukkainen',
       username: 'mluukkai',
       password: 'salainen'
     }
-    cy.request('POST', 'http://localhost:5173/api/users/', user)
-    cy.visit('http://localhost:5173')
+    cy.request('POST', '/api/users/', user)
+    cy.visit('')
   })
 
   it('front page can be opened', function () {
@@ -26,9 +26,9 @@ describe('Blog app', function () {
 
     cy.contains('Matti Luukkainen logged in')
   })
-  describe('when logged in', function() {
-    beforeEach(function() {
-      cy.login({ username: 'mluukkai', password: 'salainen'})
+  describe('when logged in', function () {
+    beforeEach(function () {
+      cy.login({ username: 'mluukkai', password: 'salainen' })
     })
     it('a new blog can be created', function () {
       cy.contains('new blog').click()
@@ -38,5 +38,18 @@ describe('Blog app', function () {
       cy.get('#submit').click()
       cy.contains('a blog created by cypress')
     })
+    describe('and a blog exists', function () {
+      beforeEach(function () {
+        cy.createBlog({
+          title: 'another blog',
+          author: 'by cypress',
+          url: 'on a website'
+        })
+      })
+      it('contains the new blog', function () {
+        cy.contains('another blog')
+      })
+    })
   })
+
 })
