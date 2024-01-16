@@ -6,7 +6,7 @@ describe('Blog app', function () {
       username: 'mluukkai',
       password: 'salainen'
     }
-    cy.request('POST', 'http://localhost:5173/api/users/', user) 
+    cy.request('POST', 'http://localhost:5173/api/users/', user)
     cy.visit('http://localhost:5173')
   })
 
@@ -18,16 +18,19 @@ describe('Blog app', function () {
     cy.contains('login').click()
   })
 
-  describe('when logged in', function (){
-    beforeEach(function () {
-      cy.contains('login').click()
-      cy.get('#username').type('mluukkai')
-      cy.get('#password').type('salainen')
-      cy.get('#login-button').click()
+  it('login succeeds', function () {
+    cy.contains('login').click()
+    cy.get('#username').type('mluukkai')
+    cy.get('#password').type('salainen')
+    cy.get('#login-button').click()
 
-      cy.contains('Matti Luukkainen logged in')
+    cy.contains('Matti Luukkainen logged in')
+  })
+  describe('when logged in', function() {
+    beforeEach(function() {
+      cy.login({ username: 'mluukkai', password: 'salainen'})
     })
-    it('a new blog can be created', function(){
+    it('a new blog can be created', function () {
       cy.contains('new blog').click()
       cy.get('#title').type('a blog created by cypress')
       cy.get('#author').type('cypress')
