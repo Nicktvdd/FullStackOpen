@@ -58,18 +58,24 @@ describe('Blog app', function () {
       it('contains the new blog', function () {
         cy.contains('another blog')
       })
-      it('user can like a blog', function() {
+      it('user can like a blog', function () {
         cy.contains('another blog').contains('Show Details').click()
         cy.contains('likes: 0').contains('like').click()
         cy.contains('likes: 1')
       })
-      it('user that created the blog can delete it', function() {
+      it('user that created the blog can delete it', function () {
         cy.contains('another blog').contains('Show Details').click()
         cy.contains('remove').click()
         cy.get('another blog').should('not.exist')
       })
+      it('different user can not remove blog', function () {
+
+        cy.visit('')
+      })
+
     })
 
   })
+
 
 })
