@@ -58,7 +58,13 @@ describe('Blog app', function () {
       it('contains the new blog', function () {
         cy.contains('another blog')
       })
+      it('user can like a blog', function() {
+        cy.contains('another blog').contains('Show Details').click()
+        cy.contains('likes: 0').contains('like').click()
+        cy.contains('likes: 1')
+      })
     })
+
   })
 
 })
