@@ -26,6 +26,15 @@ describe('Blog app', function () {
 
     cy.contains('Matti Luukkainen logged in')
   })
+
+  it('login fails', function () {
+    cy.contains('login').click()
+    cy.get('#username').type('mluuk')
+    cy.get('#password').type('salainen')
+    cy.get('#login-button').click()
+
+    cy.contains('Wrong credentials')
+  })
   describe('when logged in', function () {
     beforeEach(function () {
       cy.login({ username: 'mluukkai', password: 'salainen' })
