@@ -2,6 +2,13 @@
 
 Check out the phonebook [here](https://phonebook-nsae.onrender.com). It's created with MERN(MongoDb, Express, React, Node) Axios, Mongoose, Vite and hosted on Render.
 
+Bloglist app:
+![Screenshot from 2024-03-11 18-25-31](https://github.com/Nicktvdd/FullStackOpen/assets/5775657/9ed9c13d-f543-4c10-9563-79f48d578119)
+![Screenshot from 2024-03-11 18-20-54](https://github.com/Nicktvdd/FullStackOpen/assets/5775657/efca55d4-c5d9-4f79-9c73-209409d64323)
+![Screenshot from 2024-03-11 18-20-23](https://github.com/Nicktvdd/FullStackOpen/assets/5775657/d4a51e9b-df96-4f88-b334-6a35107bcf28)
+![Screenshot from 2024-03-11 18-20-15](https://github.com/Nicktvdd/FullStackOpen/assets/5775657/52c1fa9e-13fd-4ea9-937e-b11d2b1552ef)
+
+
 ## Introduction
 **Full Stack Open** is a comprehensive online course offered by the University of Helsinki, designed to teach modern web development from the ground up. It covers a wide range of topics, from the basics of web architecture to building full-stack web applications using cutting-edge technologies.
 
